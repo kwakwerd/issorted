@@ -1,3 +1,9 @@
 ﻿  issorted.c
-C:\Users\Evan Kwak\source\repos\issorted\issorted\issorted.c(156,27): warning C4133: 'function': incompatible types - from 'char *' to 'int *'
-  issorted.vcxproj -> C:\Users\Evan Kwak\source\repos\issorted\x64\Debug\issorted.exe
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(157,27): warning C4133: 'function': incompatible types - from 'char *' to 'int *'
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(219,69): warning C4047: '=': 'char' differs in levels of indirection from 'char *'
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(220,36): warning C4047: 'function': 'char *' differs in levels of indirection from 'char'
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(220,29): warning C4024: 'strcpy': different types for formal and actual parameter 1
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(235,37): warning C4047: 'function': 'char **' differs in levels of indirection from 'char *'
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(235,32): warning C4024: 'check_sortedString': different types for formal and actual parameter 1
+C:\Users\evank\Desktop\issorted-main\issorted\issorted\issorted.c(238,27): warning C4022: 'free': pointer mismatch for actual parameter 1
+  issorted.vcxproj -> C:\Users\evank\Desktop\issorted-main\issorted\x64\Debug\issorted.exe

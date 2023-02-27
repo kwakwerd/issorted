@@ -1,3 +1,8 @@
+/*
+
+*/
+
+
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include <stdlib.h>
@@ -7,6 +12,7 @@
 #define INITIAL_CAPACITY 16 
 #define CHUNK_SIZE 10
 #define MAX_STRING_LENGTH 100
+
 
 void is_sorted(int numbers[], int num_numbers) {
     for (int i = 1; i < num_numbers; i++) {
@@ -51,9 +57,8 @@ void check_sortedString(char** array, int length) {
 
 int main(int argc, char* argv[])
 {
+    FILE* myFile = stdin;
     
-  
-
     if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0)
     {
         printf("\n======================================================");
@@ -66,9 +71,7 @@ int main(int argc, char* argv[])
         printf("\n   -h      display help");
         printf("\n\n   --help      display help");
         printf("\n\n   filename      optional stream source (default is stdin");
-
     }
-
 
 
     else if (strcmp(argv[1], "-n") == 0|| strcmp(argv[1], "-i") == 0)
@@ -113,9 +116,7 @@ int main(int argc, char* argv[])
 
         }
         else
-        {
-
-            FILE* myFile;
+        {            
             char* data;
             int size = 0;
 
@@ -133,7 +134,7 @@ int main(int argc, char* argv[])
             }
 
             // allocate memory for data array
-            data = (char*)malloc(size * sizeof(char));
+            data = malloc(size * sizeof(char));
             if (data == NULL) {
                 printf("Error allocating memory.\n");
                 return 1;
@@ -164,7 +165,7 @@ int main(int argc, char* argv[])
         if (argv[2] == NULL)
         {
            
-            char** array = NULL;
+            char* array = NULL;
             char* buffer = NULL;
             int buffer_size = 0;
             int count = 0;
@@ -172,16 +173,29 @@ int main(int argc, char* argv[])
             int c;
 
             // Allocate initial memory for array and buffer
-            array = (char**)malloc(capacity * sizeof(char*));
+            array = malloc(capacity * sizeof(char*));
+            if (array == NULL)
+            {
+                return 1;
+            }
+
             buffer_size = 1024;
-            buffer = (char*)malloc(buffer_size * sizeof(char));
+            buffer = malloc(buffer_size * sizeof(char));
+            if (buffer == NULL)
+            {
+                return 1;
+            }
 
             // Read strings from standard input until end-of-stream
             while ((c = getchar()) != EOF) {
                 // If the buffer is full, resize it
                 if (count == buffer_size - 1) {
                     buffer_size *= 2;
-                    buffer = (char*)realloc(buffer, buffer_size * sizeof(char));
+                    char* newBuffer = realloc(buffer, buffer_size * sizeof(char));
+                    if (newBuffer == NULL)
+                    {
+                        return 1;
+                    }
                 }
 
                 // Read characters into buffer until end-of-line or buffer is full
@@ -191,7 +205,11 @@ int main(int argc, char* argv[])
                     // If the buffer is full, resize it
                     if (i == buffer_size - 1) {
                         buffer_size *= 2;
-                        buffer = (char*)realloc(buffer, buffer_size * sizeof(char));
+                        char* newBuffer = realloc(buffer, buffer_size * sizeof(char));
+                        if (newBuffer == NULL)
+                        {
+                            return 1;
+                        }
                     }
                     c = getchar();
                 }
@@ -205,7 +223,12 @@ int main(int argc, char* argv[])
                 // If the array is full, resize it
                 if (count == capacity) {
                     capacity *= 2;
-                    array = (char**)realloc(array, capacity * sizeof(char*));
+                    array = realloc(array, capacity * sizeof(char*));
+                    if (array == NULL)
+                    {
+
+                        return 1;
+                    }
                 }
             }
             
@@ -235,10 +258,16 @@ int main(int argc, char* argv[])
             // check if array is full and resize if necessary
             if (count == size) {
                 size *= 2;
-                array = (double*)realloc(array, size * sizeof(double));
+                array = realloc(array, size * sizeof(double));
+                if (array == NULL)
+                {
+                    
+                    return 1;
+                }
             }
             // add input to array and increment count
             array[count++] = input;
+            
         }
 
         is_sortedReal(array, count);

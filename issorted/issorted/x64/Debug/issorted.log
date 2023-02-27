@@ -1,0 +1,3 @@
+﻿  issorted.c
+C:\Users\Evan Kwak\source\repos\issorted\issorted\issorted.c(156,27): warning C4133: 'function': incompatible types - from 'char *' to 'int *'
+  issorted.vcxproj -> C:\Users\Evan Kwak\source\repos\issorted\x64\Debug\issorted.exe
